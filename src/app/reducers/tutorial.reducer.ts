@@ -1,0 +1,25 @@
+import { Action } from '@ngrx/store'
+import { Tutorial } from './../models/tutorial.model'
+import * as TutorialActions from './../actions/tutorial.action'
+
+// Section 1
+const initialState: Tutorial = {
+    name: 'Initial Tutorial',
+    url: 'http://google.com'
+}
+
+// Section 2
+export function reducer(state: Tutorial[] = [initialState], action: TutorialActions.Actions) {
+
+    // Section 3
+    switch(action.type) {
+        case TutorialActions.ADD_TUTORIAL:
+            return [...state, action.payload];
+        case TutorialActions.REMOVE_TUTORIAL:
+            const arr = [...state];
+            arr.splice(action.payload, 1)
+            return arr;
+        default:
+            return state;
+    }
+}
